@@ -21,25 +21,20 @@ function SignIn() {
     console.log("userPassword", userPassword);
   };
 
-  const onClick = () => {
-    console.log("AsaAs");
-    axios({
-      method: "POST",
-      url: "http://localhost:8080/signin",
-      data: {
-        userEmail: userEmail.value,
-        userPassword: userPassword.value,
-      },
+  axios({
+    method: "POST",
+    url: "http://localhost:8080/signin",
+    data: {
+      userEmail: userEmail.value,
+      userPassword: userPassword.value,
+    },
+  })
+    .then((res) => {
+      console.log(res);
     })
-      .then((res) => {
-        // return "redirect:/"; 이건 나중에.....?
-        console.log(res);
-      })
-      .catch((error) => {
-        console.log("XXXXXXXXXXXXXXXxxx");
-        console.log(error);
-      });
-  };
+    .catch((error) => {
+      console.log(error);
+    });
 
   return (
     <div className="SignInForm">
@@ -63,9 +58,7 @@ function SignIn() {
           />
 
           <br />
-          <button className="signin-button" onClick={onClick}>
-            OK!
-          </button>
+          <button className="signin-button">OK!</button>
         </form>
       </div>
     </div>

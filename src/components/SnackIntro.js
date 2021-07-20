@@ -5,6 +5,35 @@ import "../css/SnackIntro.scss";
 import { Tabs, Radio } from "antd";
 
 const { TabPane } = Tabs;
+var div2 = document.getElementsByClassName("ant-tabs");
+var div1 = document.getElementsByClassName("ant-tabs-nav");
+var div3 = document.getElementsByClassName("ant-tabs-tab");
+function handleClick(event) {
+  console.log(event.target);
+  // console.log(this);
+  // 콘솔창을 보면 둘다 동일한 값이 나온다
+
+  console.log(event.target.classList);
+
+  if (event.target.classList[1] === "clicked") {
+    event.target.classList.remove("clicked");
+  } else {
+    for (var i = 0; i < div2.length; i++) {
+      div1[i].classList.remove("clicked");
+      div2[i].classList.remove("clicked");
+      div3[i].classList.remove("clicked");
+    }
+
+    event.target.classList.add("clicked");
+  }
+}
+function init() {
+  for (var i = 0; i < div2.length; i++) {
+    div1[i].addEventListener("click", handleClick);
+    //div2[i].addEventListener("click", handleClick);
+    div3[i].addEventListener("click", handleClick);
+  }
+}
 
 class SnackIntro extends React.Component {
   state = { size: "small" };
@@ -14,6 +43,7 @@ class SnackIntro extends React.Component {
   };
 
   render() {
+    init();
     const { size } = this.state;
     return (
       <div className="Intro">

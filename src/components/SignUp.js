@@ -35,27 +35,29 @@ function SignUp() {
     console.log("userPassword", userPassword);
   };
 
-  axios({
-    method: "POST",
-    url: "http://localhost:8080/signup",
-    data: {
-      userEmail: userEmail.value,
-      userPassword: userPassword.value,
-      userConfirmPassword: userConfirmPassword.value,
-      userName: userName.value,
-    },
-  })
-    .then((res) => {
-      console.log(res);
+  const onClick = () => {
+    axios({
+      method: "POST",
+      url: "http://localhost:8080/signup",
+      data: {
+        userEmail: userEmail.value,
+        userPassword: userPassword.value,
+        userConfirmPassword: userConfirmPassword.value,
+        userName: userName.value,
+      },
     })
-    .catch((error) => {
-      console.log(error);
-    });
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <div className="SignUpForm">
       <form className="signup-form" onSubmit={onSubmitdHandler}>
-        <h1 className="signup-text">Register</h1>
+        <h1 className="signup-text"> Register</h1>
         <label className="signup-label">E-mail</label>
         <input
           className="signup-input"
@@ -89,7 +91,7 @@ function SignUp() {
         />
 
         <br />
-        <button className="signupBtn hover1" type="submit">
+        <button className="signup-button" type="submit" onClick={onClick}>
           Join us!
         </button>
       </form>

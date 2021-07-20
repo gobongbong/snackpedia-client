@@ -62,3 +62,94 @@
   margin-top: 5%;
   margin-left: 5%;
 }
+.Confirm {
+  float: left;
+  margin-top: 30px;
+  margin-left: 350px;
+}
+.Confirmbtn {
+  background-color: #e94444;
+  font-style: inherit;
+  color: white;
+  height: 40px;
+  width: 90px;
+}
+// .Nutrition_Title {
+//   float: left;
+//   margin-left: -10px;
+// }
+.Amount .Calories .Carbo .Chol .Fat .Protein .Sodium .Suger {
+  //float: left;
+  // flex-direction: column;
+  margin-top: 10px;
+  background-color: yellow;
+}
+.Amount {
+  margin-top: 10px;
+  width: 180px;
+  height: 30px;
+  //margin-bottom: 30px;
+}
+.Calories {
+  margin-top: 10px;
+  width: 180px;
+  height: 30px;
+}
+.Carbo {
+  margin-top: 10px;
+  width: 180px;
+  height: 30px;
+}
+.Chol {
+  margin-top: 10px;
+  width: 180px;
+  height: 30px;
+}
+.Fat {
+  margin-top: 10px;
+  width: 180px;
+  height: 30px;
+}
+.Protein {
+  margin-top: 10px;
+  width: 180px;
+  height: 30px;
+}
+.Sodium {
+  margin-top: 10px;
+  width: 180px;
+  height: 30px;
+}
+.Suger {
+  margin-top: 10px;
+  width: 180px;
+  height: 30px;
+}
+.ntitle {
+  color: white;
+  background-color: #e94444;
+  //height: 30px;
+  font-size: 18px;
+  //margin-bottom: 30px;
+  //margin-top: 20px;
+}
+.Nu_Title {
+  float: left;
+  margin-top: 10px;
+  //background-color: #9b8e1a;
+
+  color: black;
+  font-size: 30px;
+}
+.Nutrition_register {
+  float: left;
+  margin-right: 600px;
+  width: 100px;
+  margin-top: -10px;
+  flex-direction: column;
+  display: flex;
+  // background-color: #44d6e9;
+}
+.mtitle {
+  margin-bottom: 10px;
+}

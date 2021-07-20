@@ -1,7 +1,9 @@
 .App {
   text-align: center;
 }
-
+* {
+  font-family: "배달의민족 주아";
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
