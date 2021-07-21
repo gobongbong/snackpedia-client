@@ -28,29 +28,34 @@ class SnackTag extends React.Component {
         <span style={{ marginRight: 8 }} className="Tag_setup">
           <p className="TagName">TAGS</p>
         </span>
-        <div className="TagLayout">
-          {tagsData.map((tag) => (
-            <CheckableTag
-              className="InTag1"
-              key={tag}
-              checked={selectedTags.indexOf(tag) > -1}
-              onChange={(checked) => this.handleChange(tag, checked)}
-            >
-              {tag}
-            </CheckableTag>
-          ))}
-        </div>
-        <div className="TagLayout1">
-          {tagsData1.map((tag1) => (
-            <CheckableTag
-              className="InTag2"
-              key={tag1}
-              checked={selectedTags.indexOf(tag1) > -1}
-              onChange={(checked) => this.handleChange(tag1, checked)}
-            >
-              {tag1}
-            </CheckableTag>
-          ))}
+        {/* {selectedTags.length } */}
+
+        <div className="test1">
+          {/* 나중에지우기 */}
+          <div className="TagLayout">
+            {tagsData.map((tag) => (
+              <CheckableTag
+                className="InTag1"
+                key={tag}
+                checked={selectedTags.indexOf(tag) > -1}
+                onChange={(checked) => this.handleChange(tag, checked)}
+              >
+                {tag}
+              </CheckableTag>
+            ))}
+          </div>
+          <div className="TagLayout1">
+            {tagsData1.map((tag1) => (
+              <CheckableTag
+                className="InTag2"
+                key={tag1}
+                checked={selectedTags.indexOf(tag1) > -1}
+                onChange={(checked) => this.handleChange(tag1, checked)}
+              >
+                {tag1}
+              </CheckableTag>
+            ))}
+          </div>
         </div>
       </div>
     );

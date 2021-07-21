@@ -2,7 +2,7 @@
   float: right;
   margin: 10%;
   //  padding: 10%;
-  background-color: aqua;
+  // background-color: aqua;
   height: 100px;
   width: 80%;
 }
@@ -10,14 +10,15 @@
   font-size: 30px;
   text-align: left;
   border-bottom: red solid;
+  font-weight: bold;
   //border-style: solid;
-  background-color: blue;
+  // background-color: blue;
 }
 .RegisterImage {
   float: left;
   margin-left: 10%;
   margin-top: 5%;
-  border: 3px dashed red;
+  border: 3px dashed #e94444;
   border-radius: 2em;
 }
 .Register_Image {
@@ -32,27 +33,27 @@
   font-size: 40px;
 }
 .Register_Name {
-  background-color: seagreen;
+  //background-color: seagreen;
   text-align: left;
   font-size: 20px;
   margin-left: 40px;
   margin-bottom: 30px;
 }
 .Register_Name_text {
-  border: 2px solid red;
+  border: 4px solid #e94444;
   margin-left: 30px;
   width: 200px;
   margin-right: 30px;
 }
 .Register_Category {
-  background-color: steelblue;
+  //background-color: steelblue;
   text-align: left;
   font-size: 20px;
   margin-bottom: 30px;
 }
 
 .SelectBox1 {
-  border: 2px solid red;
+  border: 4px solid #e94444;
   margin-left: 30px;
   font-size: 20px;
 }
@@ -61,4 +62,162 @@
   float: left;
   margin-top: 5%;
   margin-left: 5%;
+}
+.Confirm {
+  float: left;
+  margin-top: 30px;
+  margin-left: 350px;
+}
+.Confirmbtn {
+  background-color: #e94444;
+  font-style: inherit;
+  color: white;
+  height: 40px;
+  width: 90px;
+}
+// .Nutrition_Title {
+//   float: left;
+//   margin-left: -10px;
+// }
+.Amount, .Calories, .Carbo, .Chol, .Fat, .Protein, .Sodium,.Suger {
+  //float: left;
+  // flex-direction: column;
+  
+  //background-color: yellow;
+  border: 3px solid #e94444;
+}
+.Amount {
+  // margin-top: 10px;
+  width: 180px;
+  height: 30px;
+  color: black;
+  //margin-bottom: 30px;
+}
+.Calories {
+  //margin-top: 10px;
+  width: 180px;
+  height: 30px;
+  color: black;
+}
+.Carbo {
+  //margin-top: 10px;
+  width: 180px;
+  height: 30px;
+  color: black;
+}
+.Chol {
+  //  margin-top: 10px;
+  width: 180px;
+  height: 30px;
+  color: black;
+}
+.Fat {
+  // margin-top: 10px;
+  width: 180px;
+  height: 30px;
+  color: black;
+}
+.Protein {
+  //  margin-top: 10px;
+  width: 180px;
+  height: 30px;
+  color: black;
+}
+.Sodium {
+  // margin-top: 10px;
+  width: 180px;
+  height: 30px;
+  color: black;
+}
+.Suger {
+  // margin-top: 10px;
+  width: 180px;
+  height: 30px;
+  color: black;
+}
+.ntitle {
+  color: white;
+  background-color: #e94444;
+  // height: 30px;
+  font-size: 18px;
+  //margin-bottom: 30px;
+  //margin-top: 20px;
+}
+.Nu_Title {
+  float: left;
+  margin-top: 10px;
+  //background-color: #9b8e1a;
+
+  color: black;
+  font-size: 30px;
+}
+.Nutrition_register {
+  float: left;
+  margin-right: 600px;
+  width: 100px;
+  margin-top: -10px;
+  flex-direction: column;
+  display: flex;
+
+  // background-color: #44d6e9;
+}
+.Nutrition_Title {
+  float: left;
+  //background-color: aqua;
+  margin-top: 10px;
+  
+}
+.mtitle {
+  margin-bottom: 10px;
+}
+.checkbox1 {
+  float: right;
+  width: 200px;
+  //background-color: rgb(138, 78, 125);
+  margin-top: -625px;
+  margin-right: 250px;
+}
+.checkboxtitle {
+  color: black;
+  font-size: 30px;
+  text-align: left;
+  //background-color: blue;
+}
+.checkindex {
+  font-size: 20px;
+
+  height: 30px;
+  width: 100px;
+  background-color: #e94444;
+  color: white;
+}
+.checkbox_1 {
+  float: left;
+  margin-bottom: 10px;
+}
+.checkbox2 {
+  float: right;
+  width: 200px;
+  //background-color: yellowgreen;
+  margin-top: -646px;
+  margin-right: 10px;
+  
+}
+.checkboxtitle2 {
+  color: black;
+  font-size: 30px;
+  text-align: left;
+  //background-color: blue;
+}
+
+.checkbox_2 {
+  float: left;
+  margin-bottom: 10px;
+}
+.checkindex2 {
+  font-size: 20px;
+
+  height: 20px;
+  width: 140px;
+  //background-color: aqua;
 }

@@ -4,6 +4,7 @@ import axios from "axios";
 
 import SnackList from "./SnackList";
 import SnackDetail from "./SnackDetail";
+import Search from "./Search";
 
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
@@ -32,9 +33,10 @@ function App() {
   };
 
   const onClick = (e) => {
-    e.preventDefault();
+    return <Link to="search"></Link>;
+  };
 
-    // 검색어 초기화
+  const resetInput = () => {
     setSearch("");
   };
 
@@ -74,12 +76,14 @@ function App() {
               onChange={onChange}
               className="search-input"
             />
-            <input
-              type="submit"
-              value="🍫"
-              className="search-btn"
-              onClick={onClick}
-            />
+            <Link to="/search">
+              <input
+                type="button"
+                value="🍫"
+                className="search-btn"
+                onClick={onClick}
+              />
+            </Link>
           </div>
         </div>
       </div>
@@ -148,6 +152,12 @@ function App() {
           />
           <Route path="/SnackRegister" component={SnackRegister} />
           <Route path="/snack/detail/:id" component={SnackDetail} />
+          <Route
+            path="/search"
+            render={() => {
+              return <Search search={search} resetInput={resetInput} />;
+            }}
+          />
 
           <Route exact="exact" path="/signin" component={SignIn} />
           <Route exact="exact" path="/signup" component={SignUp} />
