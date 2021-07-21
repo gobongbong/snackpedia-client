@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import "../css/SignIn.css";
+import  {useHistory} from 'react-router';
 
 function SignIn() {
   const [userEmail, setuserEmail] = useState("");
@@ -19,24 +20,22 @@ function SignIn() {
 
     console.log("userEmail", userEmail);
     console.log("userPassword", userPassword);
+    //나중에 지웡...
   };
 
+  const history = useHistory();
+
   const onClick = () => {
-    console.log("AsaAs");
-    axios({
-      method: "POST",
-      url: "http://localhost:8080/signin",
-      data: {
-        userEmail: userEmail.value,
-        userPassword: userPassword.value,
-      },
-    })
+    axios.post('http://localhost:8080/signin', null, {params : {
+      userEmail: userEmail,
+      userPassword: userPassword
+    }})
       .then((res) => {
-        // return "redirect:/"; 이건 나중에.....?
         console.log(res);
+        history.push('/');
+
       })
       .catch((error) => {
-        console.log("XXXXXXXXXXXXXXXxxx");
         console.log(error);
       });
   };
