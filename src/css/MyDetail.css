@@ -1,0 +1,161 @@
+.detail {
+  margin-top: 20px;
+}
+
+.detail h1 {
+  text-align: left;
+
+  font-family: "배달의민족 주아";
+
+  margin: 0;
+  padding: 0;
+}
+
+hr {
+  border: 0.5px solid #e94444;
+}
+
+.detail-main {
+  width: 900px;
+  height: 550px;
+
+  display: flex;
+  justify-content: space-around;
+
+  text-align: center;
+}
+
+.detail-main-img-div {
+  width: 400px;
+  height: 400px;
+
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.detail-main-img-div img {
+  width: 200px;
+  height: 200px;
+
+  margin: 0px auto;
+
+  margin-top: 100px;
+}
+
+.img-detail-div {
+  width: 400px;
+
+  border: #e94444 solid 1px;
+}
+
+.detail-main-info-div {
+  width: 400px;
+  height: 600px;
+  /* border: 1px solid black; */
+}
+
+.detail-main-info-div h2 {
+  margin: 0;
+  padding: 0;
+
+  font-family: "배달의민족 주아";
+}
+
+.detail-main-info-div hr {
+  border: 1px dashed #e94444;
+
+  width: 75%;
+}
+
+.detail-main-info-tag {
+  width: 300px;
+  display: flex;
+  justify-content: space-around;
+  margin: 0px auto;
+}
+
+.detail-main-info-tag .tag {
+  font-size: 15px;
+  width: 60px;
+  color: whitesmoke;
+
+  border-radius: 5px;
+  background: #e94444;
+}
+
+.detail-ingredient {
+  display: flex;
+}
+
+.detail-ingredient-box {
+  width: 300px;
+}
+
+.ingredient-title {
+  width: 50px;
+
+  margin: 0px auto;
+  background-color: #e94444;
+  color: whitesmoke;
+}
+
+.detail-ingredient-info {
+  margin-left: 3px;
+  border: 1px dashed #e94444;
+  border-radius: 5px;
+  padding: 0px;
+}
+
+.detail-comment-input {
+  width: 600px;
+
+  margin: 20px auto;
+}
+
+.commet-text {
+  width: 500px;
+  margin-right: 6px;
+
+  border: 1px solid #e94444;
+  border-radius: 4px;
+}
+
+.commet-text:focus {
+  outline: none;
+  border: 1px solid #e94444;
+}
+
+.commet-btn {
+  border: none;
+
+  cursor: pointer;
+
+  color: whitesmoke;
+  background: #e94444;
+}
+
+.commet-btn:active {
+  background: #927b7b;
+}
+
+.detail-comment-div {
+  width: 900px;
+
+  margin-top: 10px;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.detail-comment {
+  width: 220px;
+
+  border: 1px solid #e94444;
+  border-radius: 5px;
+}
+
+.detail-comment hr {
+  width: 50%;
+  border: 1px dashed #e94444;
+}

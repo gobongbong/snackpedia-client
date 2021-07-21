@@ -4,7 +4,6 @@ import axios from "axios";
 
 import SnackList from "./SnackList";
 import SnackDetail from "./SnackDetail";
-import Search from "./Search";
 
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
@@ -18,13 +17,21 @@ import logo from "../images/snack.png";
 import colorLogo from "../images/color_snack.png";
 
 function App() {
-  const [mockData, setMockData] = useState([]);
+  const [snack, setSnack] = useState([]);
   const [search, setSearch] = useState("");
 
   // TODO 과자 등록이 구현되면 없애기
   useEffect(() => {
-    axios.get("http://localhost:3000/data/data.json").then((res) => {
-      setMockData(res.data.data);
+    axios.get("http://localhost:8080").then((res) => {
+      // setSnack(res.data.data);
+      if (!res.data.length) {
+        console.log("DB에 Data 없으니 목업 데이터를 가져옴");
+        axios.get("http://localhost:3000/data/data.json").then((res) => {
+          setSnack(res.data.data);
+        });
+      } else {
+        setSnack(res.data.data);
+      }
     });
   }, []); // 마운트만 할 경우 [] 추가
 
@@ -33,11 +40,35 @@ function App() {
   };
 
   const onClick = (e) => {
-    return <Link to="search"></Link>;
+    axios({
+      method: "GET",
+      url: `http://localhost:8080/search`,
+      params: {
+        search: search,
+      },
+    }).then((res) => {
+      console.log(`검색된 결과 >>>> ${res.data}`);
+
+      if (!res.data.data) {
+        alert("검색된 결과가 없습니다. 다시 검색해 주세요");
+      } else {
+        setSnack(res.data.data);
+      }
+
+      setSearch("");
+    });
   };
 
-  const resetInput = () => {
-    setSearch("");
+  const handleCategory = (category) => {
+    axios({
+      method: "GET",
+      url: `http://localhost:8080/snack/${category}`,
+      params: {
+        category: category,
+      },
+    }).then((res) => {
+      setSnack(res.data.data);
+    });
   };
 
   return (
@@ -48,9 +79,9 @@ function App() {
             <img src={colorLogo} alt="nav-logo" className="color-logo" />
           </div>
           <div className="nav-logo-title">
-            <Link to="/" className="title">
+            <a href="/" className="title">
               Snackpedia
-            </Link>
+            </a>
           </div>
         </div>
 
@@ -76,14 +107,12 @@ function App() {
               onChange={onChange}
               className="search-input"
             />
-            <Link to="/search">
-              <input
-                type="button"
-                value="🍫"
-                className="search-btn"
-                onClick={onClick}
-              />
-            </Link>
+            <input
+              type="submit"
+              value="🍫"
+              className="search-btn"
+              onClick={onClick}
+            />
           </div>
         </div>
       </div>
@@ -137,30 +166,25 @@ function App() {
 
         <Switch>
           <Route
-            exact="exact"
+            exact
             path="/"
             render={() => {
-              return <SnackList snacks={mockData} />;
+              return <SnackList snacks={snack} />;
             }}
           />
 
           <Route
-            path="/snack/category"
+            exact
+            path="/snack/:category"
             render={() => {
-              return <SnackList snacks={mockData} />;
+              handleCategory(window.location.href.slice(28));
+              return <SnackList snacks={snack} />;
             }}
           />
           <Route path="/SnackRegister" component={SnackRegister} />
           <Route path="/snack/detail/:id" component={SnackDetail} />
-          <Route
-            path="/search"
-            render={() => {
-              return <Search search={search} resetInput={resetInput} />;
-            }}
-          />
-
-          <Route exact="exact" path="/signin" component={SignIn} />
-          <Route exact="exact" path="/signup" component={SignUp} />
+          <Route exact path="/signin" component={SignIn} />
+          <Route exact path="/signup" component={SignUp} />
         </Switch>
       </div>
     </div>
