@@ -33,6 +33,7 @@ function SignUp() {
 
     console.log("userEmail", userEmail);
     console.log("userPassword", userPassword);
+    
   };
 
   axios({
