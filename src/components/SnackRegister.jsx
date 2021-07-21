@@ -91,44 +91,83 @@ const SnackRegister = () => {
           <p className="Nu_Title">영양정보</p>
           <div className="Nutrition_register">
             <div className="mtitle">
-            <div class="ntitle">총량<input type="text"className="Amount"></input></div></div>
+            <div class="ntitle">총량</div><input type="text"className="Amount"></input></div>
             <div className="mtitle">
-            <div class="ntitle"> 칼로리<input type="text" className="Calories"></input></div></div>
+            <div class="ntitle"> 칼로리</div><input type="text" className="Calories"></input></div>
             <div className="mtitle">
-            <div class="ntitle">탄수화물<input type="text" className="Carbo"></input></div></div>
+            <div class="ntitle">탄수화물</div><input type="text" className="Carbo"></input></div>
             <div className="mtitle">
-            <div class="ntitle">콜레스테롤<input type="text" className="Chol"></input></div></div>
+            <div class="ntitle">콜레스테롤</div><input type="text" className="Chol"></input></div>
             <div className="mtitle">
-            <div class="ntitle">지방<input type="text" className="Fat"></input></div></div>
+            <div class="ntitle">지방</div><input type="text" className="Fat"></input></div>
             <div className="mtitle">
-            <div class="ntitle">단백질<input type="text" className="Protein"></input></div></div>
+            <div class="ntitle">단백질</div><input type="text" className="Protein"></input></div>
             <div className="mtitle">
-            <div class="ntitle">나트륨<input type="text" className="Sodium"></input></div></div>
+            <div class="ntitle">나트륨</div><input type="text" className="Sodium"></input></div>
             <div className="mtitle">
-            <div class="ntitle">당<input type="text" className="Suger"></input></div></div>
+            <div class="ntitle">당</div><input type="text" className="Suger"></input></div>
           </div>
         </div>
         <div className="Allergy">
           {/* <SnackAllergyCheck/> */}
+          
           <Checkbox.Group style={{ width: "100%" }} onChange={onChange}>
-            <Row>
+            <div className="checkbox1">
+            <p className="checkboxtitle">알레르기</p>
               <Col span={8}>
-                <Checkbox value="A">A</Checkbox>
+                <Checkbox value="A" className="checkbox_1"><p className="checkindex">콩</p></Checkbox>
               </Col>
               <Col span={8}>
 
-                <Checkbox value="B">B</Checkbox>
+                <Checkbox value="B" className="checkbox_1"><p className="checkindex">우유</p></Checkbox>
               </Col>
               <Col span={8}>
-                <Checkbox value="C">C</Checkbox>
+                <Checkbox value="C" className="checkbox_1"><p className="checkindex">계란</p></Checkbox>
               </Col>
               <Col span={8}> 
-                <Checkbox value="D">D</Checkbox>
+                <Checkbox value="D" className="checkbox_1"><p className="checkindex">생선</p></Checkbox>
               </Col>
               <Col span={8}>
-                <Checkbox value="E">E</Checkbox>
+                <Checkbox value="E" className="checkbox_1"><p className="checkindex">돼지고기</p></Checkbox>
               </Col>
-            </Row>
+              <Col span={8}>
+                <Checkbox value="F" className="checkbox_1"><p className="checkindex">밀</p></Checkbox>
+              </Col>
+            </div>
+          </Checkbox.Group>
+        </div>
+        <div className="attention_nu">
+          {/* <SnackAllergyCheck/> */}
+          
+          <Checkbox.Group style={{ width: "100%" }} onChange={onChange}>
+            <div className="checkbox2">
+            <p className="checkboxtitle2">주의성분</p>
+              <Col span={8}>
+                <Checkbox value="A" className="checkbox_2"><p className="checkindex2">MSG</p></Checkbox>
+              </Col>
+              <Col span={8}>
+
+                <Checkbox value="B" className="checkbox_2"><p className="checkindex2">합성착생료</p></Checkbox>
+              </Col>
+              <Col span={8}>
+                <Checkbox value="C" className="checkbox_2"><p className="checkindex2">차아황산나트륨</p></Checkbox>
+              </Col>
+              <Col span={8}> 
+                <Checkbox value="D" className="checkbox_2"><p className="checkindex2">아황산염</p></Checkbox>
+              </Col>
+              <Col span={8}>
+                <Checkbox value="E" className="checkbox_2"><p className="checkindex2">설탕</p></Checkbox>
+              </Col>
+              <Col span={8}>
+                <Checkbox value="F" className="checkbox_2"><p className="checkindex2">포화지방</p></Checkbox>
+              </Col>
+              <Col span={8}>
+                <Checkbox value="G" className="checkbox_2"><p className="checkindex2">팽창제</p></Checkbox>
+              </Col>
+              <Col span={8}>
+                <Checkbox value="H" className="checkbox_2"><p className="checkindex2">아스파탐</p></Checkbox>
+              </Col>
+            </div>
           </Checkbox.Group>
         </div>
       </div>
