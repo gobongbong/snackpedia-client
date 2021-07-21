@@ -11,7 +11,7 @@ import SnackTag,{oily,
   soft} from "./SnackTag";
 
 //import SnackAllergyCheck from "./SnackAllergyCheck";
-import SnackIntro from "./SnackIntro";
+import SnackUploadImg from "./SnackUploadImg";
 import "antd/dist/antd.css";
 import Register_Image from "../images/Register_Image.png";
 import "../css/SnackRegister.scss";
@@ -245,7 +245,8 @@ const SnackRegister = () => {
   const [snackProtein, setsnackProtein] = useState("");
   const [snackSodium, setsnackSodium] = useState("");
   const [snackSugar, setsnackSugar] = useState("");
-
+  const [imgBase64, setImgBase64] = useState(""); // 파일 base64
+  const [imgFile, setImgFile] = useState(null);	//파일	
 
   
   const onsnackNameHandler = (event) => {
@@ -370,7 +371,21 @@ const SnackRegister = () => {
       });
    
   };
+  const handleChangeFile = (event) => {
+    let reader = new FileReader();
 
+    reader.onloadend = () => {
+      // 2. 읽기가 완료되면 아래코드가 실행됩니다.
+      const base64 = reader.result;
+      if (base64) {
+        setImgBase64(base64.toString()); // 파일 base64 상태 업데이트
+      }
+    }
+    if (event.target.files[0]) {
+      reader.readAsDataURL(event.target.files[0]); // 1. 파일을 읽어 버퍼에 저장합니다.
+      setImgFile(event.target.files[0]); // 파일 상태 업데이트
+    }
+  }
   return (
     
     <div className="RegisterMain">
@@ -379,9 +394,15 @@ const SnackRegister = () => {
         New Snack
       </div>
       <div className="RegisterImage">
-        <img src={Register_Image} alt="nav-logo" className="Register_Image" />
-        <p className="RegisterImgae_Text">IMG</p>
+        {/* <img src={Register_Image} alt="nav-logo" className="Register_Image" /> */}
+        <SnackUploadImg></SnackUploadImg>
+        {/* <p className="RegisterImgae_Text">IMG</p> */}
         {/* <input ref={Register_Image} type='file' className="Imageinputbtn" ></input> */}
+        {/* <div style={{"backgroundColor": "#efefef", "width":"150px", "height" : "150px"}}>
+      </div> */}
+      {/* <div>
+        <input type="file" name="imgFile" id="imgFile" onChange={handleChangeFile}/>
+      </div> */}
       </div>
       <div className="Register_data">
         <div className="Register_Name">
@@ -507,6 +528,7 @@ const SnackRegister = () => {
           등록
         </button>
       </div>
+     
     </div>
   );
 };

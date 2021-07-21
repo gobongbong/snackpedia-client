@@ -24,15 +24,29 @@ const tagsData = ["#바삭함", "#매운맛", "#달콤함", "#건조함"];
 const tagsData1 = ["#순한맛", "#촉촉함", "#싱거움", "#소금맛"];
 class SnackTag extends React.Component {
   state = {
-    selectedTags: ["Books"],
+    selectedTags: ["Books"]
   };
 
   handleChange(tag, checked) {
     const { selectedTags } = this.state;
-    const nextSelectedTags = checked
-      ? [...selectedTags, tag]
-      : selectedTags.filter((t) => t !== tag);
-    //console.log("You are interested in: ", nextSelectedTags);
+    const nextSelectedTags = selectedTags.length<5?
+    (checked
+    ? [...selectedTags, tag]
+    : selectedTags.filter((t) => t !== tag)):(checked
+    ? selectedTags
+    : selectedTags.filter((t) => t !== tag))
+    // const nextSelectedTags = checked
+    //   ? [...selectedTags, tag]
+    //   : selectedTags.filter((t) => t !== tag);
+    console.log("You are interested in: ", nextSelectedTags);
+    // if(checked==1)
+    // {
+    //   const nextSelectedTags=[...selectedTags, tag];
+    // }
+    // else{
+    //   constnextSelectedTags=selectedTags.filter((t) => t !== tag);
+    // }
+    console.log("checked = ", nextSelectedTags); 
     this.setState({ selectedTags: nextSelectedTags });
     for(i=0;i<nextSelectedTags.length;i++)
 { //console.log("checked = ", i); 

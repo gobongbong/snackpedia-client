@@ -5,6 +5,7 @@ import Masonry from "react-masonry-css";
 
 import Comment from "./Comment";
 import axios from "axios";
+import Content from "./Content";
 
 class SnackDetail extends Component {
   constructor(props) {
@@ -23,16 +24,18 @@ class SnackDetail extends Component {
         labels: ["재구매", "포만감", "맛", "가성비", "창의성"],
         datasets: [
           {
-            label: "각 비율",
+            label: "과자 점수",
             backgroundColor: "rgba(248, 18, 18, 0.5)",
             fill: true,
             radius: 10,
-            pointHoverRadius: 10,
+            pointHoverRadius: 5,
             data: [3, 4, 5, 3, 2],
           },
         ],
       },
     };
+
+    this.onAllComments = this.onAllComments.bind(this);
   }
 
   componentDidMount() {
@@ -59,6 +62,10 @@ class SnackDetail extends Component {
 
       console.log(this.state.comment);
     });
+  }
+
+  onAllComments(comment) {
+    this.setState({ allComment: this.state.allComment.push(comment) });
   }
 
   render() {
@@ -106,8 +113,8 @@ class SnackDetail extends Component {
                     },
                     backgroundColor: "rgba(255, 255, 255)",
                     pointLabels: {
-                      fontSize: 10,
-                      fontColor: "black",
+                      fontSize: 50,
+                      fontColor: "red",
                     },
                   },
                 }}
@@ -132,12 +139,20 @@ class SnackDetail extends Component {
           </div>
 
           <div className="detail-comment-input">
-            <input
+            {/* <input
               className="commet-text"
               type="text"
               placeholder="이 과자 맛있음? 댓글 ㄱㄱ"
+              value={this.state.content}
+              onChange={this.onChange}
             />
-            <input className="commet-btn" type="submit" value="댓글 달기" />
+            <input
+              className="commet-btn"
+              type="button"
+              value="댓글 달기"
+              onClick={this.onClick}
+            /> */}
+            <Content onAllComments={this.onAllComments} />
           </div>
 
           <div className="detail-comment-div">

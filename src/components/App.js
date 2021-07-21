@@ -1,5 +1,6 @@
 import { Link, Route, Switch } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
 import axios from "axios";
 
 import SnackList from "./SnackList";
@@ -20,8 +21,11 @@ function App() {
   const [snack, setSnack] = useState([]);
   const [search, setSearch] = useState("");
 
-  // TODO 과자 등록이 구현되면 없애기
+  console.log(`쿠키 있니? ${document.cookie}`);
+
   useEffect(() => {
+    //TODO document.cookie = "hi=gggg"; // 차선책
+
     axios.get("http://localhost:8080").then((res) => {
       // setSnack(res.data.data);
       if (!res.data.length) {
@@ -87,16 +91,20 @@ function App() {
 
         <div className="nav-interaction">
           <div className="nav-user">
-            {/* TODO 추후 로그인 여부에 따른 Link 태그 변경 */}
-            <Link to="/signin" className="nav-user-link">
-              Signin
-            </Link>
-            <Link to="/signup" className="nav-user-link">
-              Signup
-            </Link>
-            <Link to="/signup" className="nav-user-link">
-              Mypage
-            </Link>
+            {!document.cookie ? (
+              <div>
+                <Link to="/signin" className="nav-user-link">
+                  Signin
+                </Link>
+                <Link to="/signup" className="nav-user-link">
+                  Signup
+                </Link>
+              </div>
+            ) : (
+              <Link to="/signup" className="nav-user-link">
+                Mypage
+              </Link>
+            )}
           </div>
 
           <div className="search-div">
