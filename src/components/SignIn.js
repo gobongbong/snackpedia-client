@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import "../css/SignIn.css";
-import  {useHistory} from 'react-router';
+import { useHistory } from "react-router";
 
 function SignIn() {
   const [userEmail, setuserEmail] = useState("");
@@ -19,25 +19,39 @@ function SignIn() {
     event.preventDefault();
 
     console.log("userEmail", userEmail);
-    console.log("userPassword", userPassword);
-    //나중에 지웡...
   };
 
   const history = useHistory();
 
   const onClick = () => {
-    axios.post('http://localhost:8080/signin', null, {params : {
-      userEmail: userEmail,
-      userPassword: userPassword
-    }})
-      .then((res) => {
-        console.log(res);
-        history.push('/');
-
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (userEmail !== "" && userPassword !== "") {
+      axios
+        .post("http://localhost:8080/signin", null, {
+          params: {
+            userEmail: userEmail,
+            userPassword: userPassword,
+          },
+        })
+        .then((res) => {
+          // if()
+          console.log("로그인 성공 데이터 >>>>>>>>> " + res.data);
+          // document.cookie = `keykey=${res.data}`;
+          // res.data === 1
+          if (res.data === userEmail) {
+            document.cookie = `keykey=${res.data}`;
+            history.push("/");
+          } else {
+            // res.data === 0
+            alert("E-MAIL과 PASSWORD를 확인해주세요!");
+            history.push("/signin");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      return alert("E-MAIL과 PASSWORD를 입력해주세요!");
+    }
   };
 
   return (
