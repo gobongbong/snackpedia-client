@@ -71,6 +71,18 @@
   color: black;
 }
 
+.nav-user-link-signout-btn {
+  border: none;
+  background: white;
+
+  cursor: pointer;
+  transition: color 0.5s ease-in-out;
+}
+
+.nav-user-link-signout-btn:hover {
+  color: #e94444;
+}
+
 /* --- 검색 부분 --- */
 .search-div {
   display: flex;

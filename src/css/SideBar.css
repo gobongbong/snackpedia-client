@@ -53,6 +53,18 @@ ul li {
   color: aliceblue;
 }
 
+.sidebar-link-false {
+  border: 1px solid #eee;
+}
+
+.sidebar-link-true {
+  width: 200px;
+
+  margin: 0px auto;
+  border-radius: 5px;
+  border: 2px solid rgb(243, 70, 70);
+}
+
 .regist-snack {
   font-size: 38px;
   font-family: "배달의민족 주아";

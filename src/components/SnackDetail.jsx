@@ -28,8 +28,14 @@ class SnackDetail extends Component {
             backgroundColor: "rgba(248, 18, 18, 0.5)",
             fill: true,
             radius: 10,
-            pointHoverRadius: 5,
-            data: [3, 4, 5, 3, 2],
+            pointHoverRadius: 2,
+            data: [
+              this.props.location.state.snack.flavor,
+              this.props.location.state.snack.creativity,
+              this.props.location.state.snack.costPerformance,
+              this.props.location.state.snack.satiety,
+              this.props.location.state.snack.repurchase,
+            ],
           },
         ],
       },
@@ -45,55 +51,179 @@ class SnackDetail extends Component {
       history.push("/");
     }
 
-    axios.get("http://localhost:3000/data/comment.json").then((res) => {
-      this.setState({ comment: res.data.comment });
+    // 처음 과자 댓글 들고오기
+    axios
+      .get(`http://localhost:8080/comment/${this.props.location.state.id}`)
+      .then((res) => {
+        this.setState({ comment: res.data.comment });
 
-      this.setState({
-        allComment: res.data.comment.map((comment) => {
-          return (
-            <Comment
-              id={comment.id}
-              key={comment.id}
-              content={comment.content}
-            />
-          );
-        }),
+        this.setState({
+          allComment: res.data.map((comment) => {
+            return (
+              <Comment
+                id={comment.id}
+                key={comment.id}
+                userName={comment.userName}
+                content={comment.content}
+              />
+            );
+          }),
+        });
       });
-
-      console.log(this.state.comment);
-    });
   }
 
   onAllComments(comment) {
-    this.setState({ allComment: this.state.allComment.push(comment) });
+    const { allComment } = this.state;
+
+    this.setState({
+      allComment: [
+        ...allComment,
+        <Comment
+          id={comment.id}
+          key={comment.id}
+          userName={comment.userName}
+          content={comment.content}
+        />,
+      ],
+    });
   }
 
   render() {
-    let ipsum =
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.";
-
     const { state } = this.props.location;
+    let hasAllergies = [];
+    let hasCautions = [];
+    let hasTags = [];
+
+    console.log(state.snack);
+
+    let allergies = {
+      bean: state.snack.bean,
+      milk: state.snack.milk,
+      egg: state.snack.egg,
+      fish: state.snack.fish,
+      fork: state.snack.fork,
+      wheat: state.snack.wheat,
+    };
+
+    let cautions = {
+      msg: state.snack.msg,
+      color: state.snack.color,
+      atsodium: state.snack.atsodium,
+      sulfite: state.snack.sulfite,
+      atsugar: state.snack.atsugar,
+      atfat: state.snack.atfat,
+      swelling: state.snack.swelling,
+      asparm: state.snack.asparm,
+    };
+
+    let tags = {
+      crispy: state.snack.crispy,
+      soft: state.snack.soft,
+      spicy: state.snack.spicy,
+      oily: state.snack.oily,
+      sweet: state.snack.sweet,
+      sour: state.snack.sour,
+      flat: state.snack.flat,
+      salty: state.snack.salty,
+    };
+
+    for (const tag in tags) {
+      if (tags[tag] === "1") {
+        if (tag === "crispy") {
+          hasTags.push("#바삭함");
+        } else if (tag === "soft") {
+          hasTags.push("#순한맛");
+        } else if (tag === "spicy") {
+          hasTags.push("#매운맛");
+        } else if (tag === "oily") {
+          hasTags.push("#촉촉함");
+        } else if (tag === "sweet") {
+          hasTags.push("#달콤함");
+        } else if (tag === "sour") {
+          hasTags.push("#싱거움");
+        } else if (tag === "flat") {
+          hasTags.push("#바삭함");
+        } else if (tag === "salty") {
+          hasTags.push("#짭짤함");
+        }
+      }
+    }
+
+    for (const allegy in allergies) {
+      if (allergies[allegy] === "1") {
+        if (allegy === "bean") {
+          hasAllergies.push("🥜(콩)");
+        } else if (allegy === "milk") {
+          hasAllergies.push("🥛(우유)");
+        } else if (allegy === "egg") {
+          hasAllergies.push("🥚(달걀)");
+        } else if (allegy === "fish") {
+          hasAllergies.push("🐟(생선)");
+        } else if (allegy === "fork") {
+          hasAllergies.push("🐖(돼지고기)");
+        } else if (allegy === "wheat") {
+          hasAllergies.push("🌿(밀)");
+        }
+      }
+    }
+
+    for (const caution in cautions) {
+      if (cautions[caution] === "1") {
+        if (caution === "msg") {
+          hasCautions.push("MSG");
+        } else if (caution === "color") {
+          hasCautions.push("합성착색료");
+        } else if (caution === "atsodium") {
+          hasCautions.push("차아황산나트륨");
+        } else if (caution === "sulfite") {
+          hasCautions.push("아황산염");
+        } else if (caution === "atsugar") {
+          hasCautions.push("설탕");
+        } else if (caution === "atfat") {
+          hasCautions.push("포화지방");
+        } else if (caution === "swelling") {
+          hasCautions.push("팽창제");
+        } else if (caution === "asparm") {
+          hasCautions.push("아스파탐");
+        }
+      }
+    }
 
     if (state === undefined) {
       return null;
     } else {
       return (
         <div className="detail">
-          <h1>카테고리</h1>
+          <h1>
+            {state.snack.category === "snackcookie"
+              ? "과자 / 쿠키"
+              : state.snack.category === "income"
+              ? "수입제과"
+              : state.snack.category === "icecream"
+              ? "아이스크림"
+              : "초콜릿 / 캔디"}
+          </h1>
           <hr />
           <div className="detail-main">
             <div className="detail-main-img-div">
-              <img src={state.image} alt="snack" />
+              <img
+                id={state.id}
+                src={`http://localhost:3000/images/${state.path}`}
+                alt="snack"
+              />
             </div>
 
             <div className="detail-main-info-div">
-              <h2>과자 이름</h2>
+              <h2>{state.snack.snackName}</h2>
               <hr />
               <div className="detail-main-info-tag">
-                <div className="tag">#바삭함</div>
-                <div className="tag">#촉촉함</div>
-                <div className="tag">#순한맛</div>
-                <div className="tag">#소금맛</div>
+                {hasTags.map((tag, idx) => {
+                  return (
+                    <div key={idx} className="tag">
+                      {tag}
+                    </div>
+                  );
+                })}
               </div>
               <Radar
                 options={{
@@ -125,16 +255,33 @@ class SnackDetail extends Component {
 
           <div className="detail-ingredient">
             <div className="detail-ingredient-box">
-              <div className="ingredient-title">원재료명</div>
-              <div className="detail-ingredient-info">{ipsum}</div>
+              <div className="ingredient-title">알레르기</div>
+              <div className="detail-ingredient-info">
+                {hasAllergies.map((allegy, idx) => {
+                  return <div key={idx}>{allegy}</div>;
+                })}
+              </div>
             </div>
             <div className="detail-ingredient-box">
               <div className="ingredient-title">영양정보</div>
-              <div className="detail-ingredient-info">{ipsum}</div>
+              <div className="detail-ingredient-info">
+                <div>총량 : {state.snack.amount} g</div>
+                <div>칼로리 : {state.snack.calories} kcal</div>
+                <div>탄수화물 : {state.snack.carbo} g</div>
+                <div>콜레스테롤 : {state.snack.chol} g</div>
+                <div>지방 : {state.snack.fat} g</div>
+                <div>단백질 : {state.snack.protein} g</div>
+                <div>나트륨 : {state.snack.sodium} g</div>
+                <div>당 : {state.snack.suga} g</div>
+              </div>
             </div>
             <div className="detail-ingredient-box">
               <div className="ingredient-title">주의성분</div>
-              <div className="detail-ingredient-info">{ipsum}</div>
+              <div className="detail-ingredient-info">
+                {hasCautions.map((caution, idx) => {
+                  return <div key={idx}>{caution}</div>;
+                })}
+              </div>
             </div>
           </div>
 
@@ -152,7 +299,7 @@ class SnackDetail extends Component {
               value="댓글 달기"
               onClick={this.onClick}
             /> */}
-            <Content onAllComments={this.onAllComments} />
+            <Content onAllComments={this.onAllComments} snackId={state.id} />
           </div>
 
           <div className="detail-comment-div">

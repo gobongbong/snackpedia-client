@@ -14,21 +14,8 @@ h2 {
   padding-left: 20px;
 }
 
-.snack img {
-  animation: fadein 3s;
-
-  @media (max-width: 768px) {
-    display: none;
-  }
-
-  box-shadow: 0.3px 0.4px 0.2px rgb(206, 96, 96);
-}
-
-@keyframes fadein {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+.snack {
+  width: 170px;
+  height: 160px;
+  box-shadow: 10px, 102px, 10px, 10px;
 }

@@ -90,10 +90,13 @@ hr {
 
 .detail-ingredient-box {
   width: 300px;
+
+  font-family: "배달의민족 주아";
+  font-size: 16px;
 }
 
 .ingredient-title {
-  width: 50px;
+  width: 70px;
 
   margin: 0px auto;
   background-color: #e94444;

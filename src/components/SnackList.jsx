@@ -5,10 +5,19 @@ function SnackList({ snacks, category }) {
   let allSnack;
 
   if (snacks === undefined) {
+    console.log(snacks);
     return <div>없어!</div>;
   } else {
     allSnack = snacks.map((snack) => {
-      return <Snack id={snack.id} key={snack.id} image={snack.snackImage} />;
+      return (
+        <Snack
+          id={snack.id}
+          key={snack.id}
+          image={snack.snackImage}
+          snack={snack}
+          path={snack.snackThumbnailPath}
+        />
+      );
     });
   }
 

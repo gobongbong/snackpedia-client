@@ -1,6 +1,6 @@
 import { Link, Route, Switch } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useCookies } from "react-cookie";
+import { useHistory } from "react-router";
 import axios from "axios";
 
 import SnackList from "./SnackList";
@@ -20,21 +20,16 @@ import colorLogo from "../images/color_snack.png";
 function App() {
   const [snack, setSnack] = useState([]);
   const [search, setSearch] = useState("");
-
-  console.log(`쿠키 있니? ${document.cookie}`);
+  const history = useHistory();
 
   useEffect(() => {
-    //TODO document.cookie = "hi=gggg"; // 차선책
-
-    axios.get("http://localhost:8080").then((res) => {
-      // setSnack(res.data.data);
+    axios.get("http://localhost:8080/").then((res) => {
       if (!res.data.length) {
-        console.log("DB에 Data 없으니 목업 데이터를 가져옴");
         axios.get("http://localhost:3000/data/data.json").then((res) => {
           setSnack(res.data.data);
         });
       } else {
-        setSnack(res.data.data);
+        setSnack(res.data);
       }
     });
   }, []); // 마운트만 할 경우 [] 추가
@@ -51,12 +46,12 @@ function App() {
         search: search,
       },
     }).then((res) => {
-      console.log(`검색된 결과 >>>> ${res.data}`);
+      console.log(res.data);
 
-      if (!res.data.data) {
+      if (!res.data) {
         alert("검색된 결과가 없습니다. 다시 검색해 주세요");
       } else {
-        setSnack(res.data.data);
+        setSnack(res.data);
       }
 
       setSearch("");
@@ -64,6 +59,7 @@ function App() {
   };
 
   const handleCategory = (category) => {
+    console.log(category);
     axios({
       method: "GET",
       url: `http://localhost:8080/snack/${category}`,
@@ -71,7 +67,8 @@ function App() {
         category: category,
       },
     }).then((res) => {
-      setSnack(res.data.data);
+      console.log(`결과 >>>> ${res.data}`);
+      setSnack(res.data);
     });
   };
 
@@ -101,9 +98,23 @@ function App() {
                 </Link>
               </div>
             ) : (
-              <Link to="/signup" className="nav-user-link">
-                Mypage
-              </Link>
+              <div>
+                <Link to="/signup" className="nav-user-link">
+                  Mypage
+                </Link>
+                <button
+                  className="nav-user-link-signout-btn"
+                  onClick={() => {
+                    let date = new Date();
+                    date.setDate(date.getDate() - 100);
+                    document.cookie = `key=; expires=Thu, 01 Jan 1999 00:00:10 GMT;`;
+
+                    history.push("/");
+                  }}
+                >
+                  Signout
+                </button>
+              </div>
             )}
           </div>
 
@@ -133,40 +144,44 @@ function App() {
           </h1>
           <ul>
             <li>
-              <Link to="/snack/income" className="sidebar-link">
-                수입제과
+              <Link
+                to="/snack/income"
+                className="sidebar-link"
+                onClick={() => handleCategory("income")}
+              >
+                🛬 수입제과
               </Link>
             </li>
             <li>
-              <Link to="/snack/icecream" className="sidebar-link">
-                아이스크림
+              <Link
+                to="/snack/icecream"
+                className="sidebar-link"
+                onClick={() => handleCategory("icecream")}
+              >
+                🍦 아이스크림
               </Link>
             </li>
             <li>
-              <Link to="/snack/cookie" className="sidebar-link">
-                과자 / 쿠키
+              <Link
+                to="/snack/cookie"
+                className="sidebar-link"
+                onClick={() => handleCategory("cookie")}
+              >
+                🍪 과자 / 쿠키
               </Link>
             </li>
             <li>
-              <Link to="/snack/chocolate" className="sidebar-link">
-                초콜릿 / 캔디
+              <Link
+                to="/snack/chocolate"
+                className="sidebar-link"
+                onClick={() => handleCategory("chocolate")}
+              >
+                🍭 초콜릿 / 캔디
               </Link>
             </li>
             <li>
               <Link to="/SnackRegister" className="sidebar-link">
                 과자 등록
-              </Link>
-            </li>
-          </ul>
-
-          <h1>
-            <img src={logo} alt="side-logo" className="sidebar-img" />
-            Notice
-          </h1>
-          <ul>
-            <li>
-              <Link to="/notice" className="sidebar-link">
-                공지사항
               </Link>
             </li>
           </ul>
@@ -185,13 +200,19 @@ function App() {
             exact
             path="/snack/:category"
             render={() => {
-              handleCategory(window.location.href.slice(28));
+              // handleCategory(window.location.href.slice(28));
               return <SnackList snacks={snack} />;
             }}
           />
           <Route path="/SnackRegister" component={SnackRegister} />
           <Route path="/snack/detail/:id" component={SnackDetail} />
-          <Route exact path="/signin" component={SignIn} />
+          <Route
+            exact
+            path="/signin"
+            render={() => {
+              return <SignIn />;
+            }}
+          />
           <Route exact path="/signup" component={SignUp} />
         </Switch>
       </div>

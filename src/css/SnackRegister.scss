@@ -60,34 +60,52 @@
 
 .Register_data {
   float: right;
-  margin-top: -45%;
+  margin-top: -40%;
   margin-left: 5%;
 }
 .Confirm {
   float: left;
   margin-top: 30px;
   margin-left: 350px;
+  height: 200px;
+  //background-color: blue;
 }
 .Confirmbtn {
-  background-color: #e94444;
-  font-style: inherit;
+  // background-color: #e94444;
+  // font-style: inherit;
+  // color: white;
+  // height: 40px;
+  // width: 90px;
+  background-color: rgb(243, 70, 70);
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  font-size: 25px;
+  margin: 4px 2px;
   color: white;
-  height: 40px;
-  width: 90px;
+  font-family: "Bangers";
+  transition: 0.3s;
 }
 // .Nutrition_Title {
 //   float: left;
 //   margin-left: -10px;
 // }
-.Amount, .Calories, .Carbo, .Chol, .Fat, .Protein, .Sodium,.Suger {
+.Amount,
+.Calories,
+.Carbo,
+.Chol,
+.Fat,
+.Protein,
+.Sodium,
+.Suger {
   //float: left;
   // flex-direction: column;
-  
+
   //background-color: yellow;
   border: 3px solid #e94444;
 }
 .Amount {
-  // margin-top: 10px;
   width: 180px;
   height: 30px;
   color: black;
@@ -164,8 +182,10 @@
 .Nutrition_Title {
   float: left;
   //background-color: aqua;
-  margin-top: 10px;
-  
+  margin-top: 60px;
+  width: 380px;
+  //background-color: blue;
+  margin-left: -280px;
 }
 .mtitle {
   margin-bottom: 10px;
@@ -174,13 +194,14 @@
   float: right;
   width: 200px;
   //background-color: rgb(138, 78, 125);
-  margin-top: -625px;
-  margin-right: 250px;
+  margin-top: -607px;
+  margin-right: 225px;
 }
 .checkboxtitle {
   color: black;
   font-size: 30px;
   text-align: left;
+  margin-top: -16px;
   //background-color: blue;
 }
 .checkindex {
@@ -199,9 +220,8 @@
   float: right;
   width: 200px;
   //background-color: yellowgreen;
-  margin-top: -646px;
-  margin-right: 10px;
-  
+  margin-top: -642px;
+  margin-right: 20px;
 }
 .checkboxtitle2 {
   color: black;
@@ -216,8 +236,8 @@
 }
 .checkindex2 {
   font-size: 20px;
-
-  height: 20px;
-  width: 140px;
-  //background-color: aqua;
+  color: white;
+  height: 30px;
+  width: 150px;
+  background-color: #e94444;
 }
