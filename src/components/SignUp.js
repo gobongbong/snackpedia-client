@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import "../css/SignUp.css";
+import  {useHistory} from 'react-router';
 
 function SignUp() {
   const [userEmail, setuserEmail] = useState("");
@@ -33,25 +34,33 @@ function SignUp() {
 
     console.log("userEmail", userEmail);
     console.log("userPassword", userPassword);
+    console.log("userName", userName);
+    
   };
 
+  const history = useHistory();
+
   const onClick = () => {
-    axios({
-      method: "POST",
-      url: "http://localhost:8080/signup",
-      data: {
-        userEmail: userEmail.value,
-        userPassword: userPassword.value,
-        userConfirmPassword: userConfirmPassword.value,
-        userName: userName.value,
-      },
+    if (userEmail.value !== undefined&& userName.value !==undefined && userPassword.value !==undefined ) {
+      console.log(userEmail.value);
+
+      axios.post('http://localhost:8080/signup', null, {params : {
+      userEmail: userEmail,
+      userPassword: userPassword,
+      userName: userName
+    }})
+    .then((res) => {
+      console.log(res);
+      history.push('/signin');
     })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    .catch((error) => {
+      console.log(error);
+    });
+    }else{
+      return alert("회원가입 실패..")
+    }
+    
+
   };
 
   return (
